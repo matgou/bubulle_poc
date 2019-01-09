@@ -1,0 +1,61 @@
+    <nav class="navbar navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#!/">POC Bubulle</a>
+        </div>
+        <div class="navbar-collapse collapse" id="searchbar">
+		<form class="navbar-form navbar-left" ng-submit="submitSearch()">
+        <div class="form-group" style="display:table; width:100%">
+          <div class="input-group" style="display:table; width:100%">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+            <input class="form-control" id="search" name="search" placeholder="Search Here" autocomplete="off" autofocus="autofocus" type="text" ng-model="searchText"></input>
+		  </div>
+		  
+        </div>
+		
+		</form>
+		<ul class="nav navbar-nav">
+			<li class="nav-item dropdown" ng-if="dropdownTagRadios == 'display'">
+				<a class="nav-link dropdown-toggle" id="navbarDropdownTagList" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  Filtrer
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+				  <a ng-repeat="tag in tags | orderBy:'-nb'" href ng-click="updateSearchText(tag.name)" class="list-group-item" ng-class="{'active': tag.name==searchText}">{{ tag.name }} <span class="badge">{{tag.nb}}</span></a>
+				</div>
+			</li>
+		</ul>
+        
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+		
+		<!-- Example row of columns -->
+      <div class="row row-offcanvas row-offcanvas-right">
+	  
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+			<div><h3>Projets {{ project.name }}</h3></div>
+			<div ng-if="selectedNode !== undefined"><h3>Information</h3>
+			<p>Selection : {{ selectedNode.label }}</p></div>
+		</div>
+		<div class="col-xs-12 col-md-9">
+			<div class="chart" class="svg-container">
+				<svg></svg>
+			</div>
+		</div>
+		
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; 2019 -  Do What The Fuck You Want to Public License.</p>
+      </footer>
+    </div> <!-- /container -->

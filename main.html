@@ -1,0 +1,75 @@
+    <nav class="navbar navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#!/">POC Bubulle</a>
+        </div>
+        <div class="navbar-collapse collapse" id="searchbar">
+		<form class="navbar-form navbar-left" ng-submit="submitSearch()">
+        <div class="form-group" style="display:table; width:100%">
+          <div class="input-group" style="display:table; width:100%">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+            <input class="form-control" id="search" name="search" placeholder="Search Here" autocomplete="off" autofocus="autofocus" type="text" ng-model="searchText"></input>
+		  </div>
+		  
+        </div>
+		
+		</form>
+		<ul class="nav navbar-nav">
+			<li class="nav-item dropdown" ng-if="dropdownTagRadios == 'display'">
+				<a class="nav-link dropdown-toggle" id="navbarDropdownTagList" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  Filtrer
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+				  <a ng-repeat="tag in tags | orderBy:'-nb'" href ng-click="updateSearchText(tag.name)" class="list-group-item" ng-class="{'active': tag.name==searchText}">{{ tag.name }} <span class="badge">{{tag.nb}}</span></a>
+				</div>
+			</li>
+		</ul>
+        
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+		
+		<!-- Example row of columns -->
+      <div class="row row-offcanvas row-offcanvas-right">
+	  
+       <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+          <div class="list-group">
+			<a href ng-click="clearSearchText()" class="list-group-item {{ pasDeTag }}">Tout  <span class="badge">{{nbTot}}</span></a>
+            <a ng-repeat="tag in tags | orderBy:'-nb'" href ng-click="updateSearchText(tag.name)" class="list-group-item" ng-class="{'active': tag.name==searchText}">{{ tag.name }} <span class="badge">{{tag.nb}}</span></a>
+          </div>
+		</div>
+		<div class="col-xs-12 col-md-9">
+			<h2 ng-if="searchText != ''">{{ searchText }}</h2>
+			<p>Ci-dessous les projets disponnible : {{ searchText }}</p>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Nom</th>
+						<th>tags</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="project in projects | filter:searchText | orderBy:'name'">
+						<td> <a style="font-size: 10px;" href="#!/graph/{{ project.projectid }}" title="{{ project.label }}" ng-bind-html="project.name | trust"></a></td>
+						<td><span ng-repeat="tag in project.tags"><a href ng-click="updateSearchText(tag)"><span class="label label-info">{{ tag }}</span></a>	&nbsp</span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; 2019 -  Do What The Fuck You Want to Public License.</p>
+      </footer>
+    </div> <!-- /container -->
