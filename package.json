@@ -6,13 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/matgou/bubulle_poc.git"
+  },
+  "author": "Mathieu GOULIN",
   "license": "ISC",
   "dependencies": {
     "angular": "^1.7.5",
     "angular-route": "^1.7.5",
     "angular-sanitize": "^1.7.5",
-    "bootstrap": "3.3.7",
+    "bootstrap": "~3.4",
     "d3": "^5.7.0",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.6"
