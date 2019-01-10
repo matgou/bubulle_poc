@@ -4,3 +4,6 @@ This application display an architecture from postgres database. It use AngularJ
 
 ## Screenshot
 ![alt text](https://raw.githubusercontent.com/matgou/bubulle_poc/master/screenshot/Capture1.PNG)
+
+## Database structure
+![alt text](https://raw.githubusercontent.com/matgou/bubulle_poc/master/screenshot/bdd.png)
